@@ -1,0 +1,141 @@
+.App {
+  text-align: center;
+}
+.searchfield_page_main_div{
+  width:70%;
+  margin:auto;
+}
+.search_div_class{
+  width:100%;
+  margin:auto;
+}
+.main_card_div{
+  width:100%;
+  margin:auto;
+  display:flex;
+}
+.card_div_class{
+  width:100%;
+  min-height:5vw;
+}
+.main_card_div1{
+  width:30%;
+  margin:auto;
+}
+.img_class{
+  width:80%;
+  margin:auto;
+  border-radius: 50%;
+}
+.main_card_div2{
+  width:70%;
+  margin:auto;
+}
+.p1_class{
+ width:100%;
+ font-weight: 600;
+}
+.p2_class{
+  width:100%;
+  margin-top:2vw;
+  display:flex;
+  justify-content: space-evenly;
+}
+.p3_class{
+  width:100%;
+  margin-top:2vw;
+}
+.flag_false_class{
+  width:100%;
+}
+.githubuser_page_main_div{
+  width:99%;
+  margin:auto;
+}
+.navbar_main_div_class{
+  width:100%;
+  margin:auto;
+  background-color: #24292F;
+  min-height:4vw;
+  display:flex;
+}
+.first_div_navbar{
+  width: 70%;
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+  color:white;
+} 
+.icon_class{
+  margin-left:2vw;
+  font-size:2vw;
+}
+.search_input{
+  background-color: #3F4448;
+  color:white;
+  border-radius: 5px;
+  border:none;
+  min-height: 2.5vw;
+}
+.second_div_navbar{
+  width:20%;
+}
+.third_div_navbar{
+  width:10%;
+  display:flex;
+  align-items: center;
+  justify-content: space-evenly;
+  color:white;
+
+}
+.img_icon{
+  width:3vw;
+  border-radius: 50%;;
+}
+.content_page{
+  width:100%;
+  display:flex;
+  margin-top:5vw;
+  min-height: 30vw;
+}
+.contentpage_first_div{
+  width:30%;
+  border:1px solid black;
+}
+
+.contentpage_second_div{
+  width:70%;
+  border:1px solid black;
+}
+.content_image_class{
+  width:70%;
+  border-radius:50%;
+}
+.click_div{
+  width:90%;
+  margin:1vw;
+  text-align: left;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding-top:1vw;
+  padding-bottom:1vw;
+}
+.name_p_class{
+  font-weight: 600;
+  font-size: 2vw;
+}
+a{
+  background-color: #3F4448;
+  color:white;
+  text-decoration: none;
+  padding:1vw;
+}
+.link_p_class{
+  width:100%;
+  display:flex;
+  justify-content: space-between;
+}
+.anchor_tag_p_class{
+  width:100%;
+  text-align: end;
+  margin-top:1vw;
+}
