@@ -120,6 +120,7 @@
   padding-bottom:1vw;
 }
 .name_p_class{
+  padding-left:2vw;
   font-weight: 600;
   font-size: 2vw;
 }
@@ -128,14 +129,27 @@ a{
   color:white;
   text-decoration: none;
   padding:1vw;
+  border-top-left-radius: 5px;
+}
+a:hover{
+  background-color: gray;
 }
 .link_p_class{
   width:100%;
   display:flex;
   justify-content: space-between;
+  padding-left:2vw;
+
 }
 .anchor_tag_p_class{
   width:100%;
   text-align: end;
+  padding-left:2vw;
   margin-top:1vw;
+}
+.p_language{
+  width:100%;
+  padding-left:2vw;
+  margin-top:1vw;
+
 }

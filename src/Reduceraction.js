@@ -7,4 +7,15 @@ export const savedata =(t)=>{
     }
 }
 
+export const saveselect =(t)=>{
+    return {
+        type:"SAVESELECT" ,
+        payload:t
+    }
+}
+
+
+
+
+
 

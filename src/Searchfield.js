@@ -3,7 +3,7 @@ import {SearchMinor} from '@shopify/polaris-icons';
 import {useState, useCallback, useMemo, useEffect} from 'react';
 import {Card} from '@shopify/polaris'
 import {Button} from '@shopify/polaris';
-import { savedata } from './Reduceraction';
+import { savedata , saveselect } from './Reduceraction';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -45,7 +45,7 @@ export default function AutocompleteExample() {
 
   const updateSelection = useCallback(
     (selected) => {
-        console.log(selected)
+       
       const selectedValue = selected.map((selectedItem) => {
         const matchedOption = options.find((option) => {
           return option.value.match(selectedItem);
@@ -54,6 +54,7 @@ export default function AutocompleteExample() {
       });
 
       setSelectedOptions(selected);
+      
       setInputValue(selectedValue[0]);
     },
     [options],
@@ -93,7 +94,8 @@ export default function AutocompleteExample() {
   }
 
   const handler=(d)=>{
-    console.log(d)
+    dispatch(saveselect(selectedOptions))
+      sessionStorage.setItem('selected' , selectedOptions)
     dispatch(savedata([d]))
     navi('/githubuser')
   }

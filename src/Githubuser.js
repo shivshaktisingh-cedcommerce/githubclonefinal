@@ -12,29 +12,13 @@ const Githubuser = () => {
     }
     const mystate = useSelector((state)=>state.function1)
     const[repourl , setRepourl]=useState([])
+    const[current , setCurrent]=useState({})
     const [selected, setSelected] = useState(0);
     const handleTabChange = useCallback(
         (selectedTabIndex) => setSelected(selectedTabIndex),
         [],
       );
-      const tabs = [
-        {
-          id: 'all-customers-1',
-          content: 'Overview',
-          accessibilityLabel: 'All customers',
-          panelID: 'all-customers-content-1',
-          name:"Name : " +mystate.save[0].name ,
-          login:"User Name : "+mystate.save[0].login ,
-          bio:"Bio : " +mystate.save[0].bio ,
-          followers:"Followers : " +mystate.save[0].followers + " Followers" ,
-          following:"Following : " +mystate.save[0].following + " Following" ,
-          repositories: "Repositiories : " +mystate.save[0].public_repos + " Repositiories" ,
-          location:"Address : " +mystate.save[0].location ,
-          email:"Email : " + mystate.save[0].email ,
-          blog:"Blog : " + mystate.save[0].blog ,
-          twitter: "Twitter : " + mystate.save[0].twitter_username
-
-        },
+      const tabs = [  
         {
           id: 'accepts-marketing-1',
           content: 'Repositiories' ,
@@ -44,20 +28,32 @@ const Githubuser = () => {
       ];
 
       const fetch_function3=async()=>{
-        await fetch(`https://api.github.com/users/${mystate.save[0].login}/repos` , {options1})
+        let t = mystate.save.length>0?mystate.save[0].login:sessionStorage.getItem('selected')
+        let url = `https://api.github.com/users/${t}`
+        await fetch(url , {options1})
         .then((res)=>res.json())
         .then((res)=>{
-            let t=[];
-            console.log(res)
+            setCurrent(res)
+        })
+
+      }
+
+      const fetch_function4=async()=>{
+        let t = mystate.save.length>0?mystate.save[0].login:sessionStorage.getItem('selected')
+        let url = `https://api.github.com/users/${t}/repos`
+        await fetch(url , {options1})
+        .then((res)=>res.json())
+        .then((res)=>{
+            let t1=[];
             res.map((d)=>{
-              t.push(<div className="click_div"><p className="name_p_class">{d.name}</p><p>{"Language : " +d.language}</p><p className="link_p_class">{d.description}</p><p className="anchor_tag_p_class"><a href={d.html_url} target="blank"> Click </a></p></div>);
-            //   console.log(t)
+              t1.push(<div className="click_div"><p className="name_p_class">{d.name}</p><p className="p_language">{"Language : " +d.language}</p><p className="link_p_class">{"Description : " +d.description}</p><p className="anchor_tag_p_class"><a href={d.html_url} target="blank"> Click </a></p></div>);
             })
-            setRepourl(t)
+            setRepourl(t1)
         })
       }
       useEffect(()=>{
-        fetch_function3(); 
+        fetch_function3();
+        fetch_function4(); 
       }, [])
       
 
@@ -76,26 +72,27 @@ const Githubuser = () => {
             <div className="second_div_navbar"></div>
             <div className="third_div_navbar">
             <p><i className="fa-solid fa-bell"></i></p>
-            <p><img src={mystate.save[0].avatar_url} alt="" className="img_icon"/></p>
+            <p><img src={current.avatar_url} alt="" className="img_icon"/></p>
             </div>
         </div>
         <div className="content_page">
             <div className="contentpage_first_div">
-                <img src={mystate.save[0].avatar_url} alt="" className="content_image_class"/>
+                <img src={current.avatar_url} alt="" className="content_image_class"/>
+                <p>{"Name : " +current.name}</p>
+                <p>{"User Name : "+current.login}</p>
+                <p>{"Bio : " +current.bio}</p>
+                <p>{"Followers : " +current.followers + " Followers"}</p>
+                <p>{"Following : " +current.following + " Following"}</p>
+                <p>{"Repositiories : " +current.public_repos + " Repositiories"}</p>
+                <p>{"Address : " +current.location}</p>
+                <p>{"Email : " + current.email}</p>
+                <p>{"Blog : " + current.blog}</p>
+                <p>{"Twitter : " + current.twitter_username}</p>
             </div>
             <div className="contentpage_second_div">
             <Card>
       <Tabs tabs={tabs} selected={selected} onSelect={handleTabChange}>
-                <p>{tabs[selected].name}</p>
-                <p>{tabs[selected].login}</p>
-                <p>{tabs[selected].bio}</p>
-                <p>{tabs[selected].followers}</p>
-                <p>{tabs[selected].following}</p>
-                <p>{tabs[selected].repositories}</p>
-                <p>{tabs[selected].location}</p>
-                <p>{tabs[selected].email}</p>
-                <p>{tabs[selected].blog}</p>
-                <p>{tabs[selected].twitter}</p>
+                
                 <div>{tabs[selected].new}</div>
                 
                 
