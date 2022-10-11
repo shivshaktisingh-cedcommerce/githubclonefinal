@@ -8,6 +8,11 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 export default function AutocompleteExample() {
+  var options1={
+    method:"GET" ,
+    headers:{Authorization:`Bearer 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`}
+
+  }
     const[rows , setRows] = useState([])
     const[currentdata , setCurrentData]=useState([])
     const deselectedOptions = useMemo(
@@ -16,7 +21,7 @@ export default function AutocompleteExample() {
   );
   const dispatch = useDispatch();
   const navi = useNavigate()
-  const [selectedOptions, setSelectedOptions] = useState([]);
+  const [selectedOptions, setSelectedOptions] = useState(['mojombo']);
   const [inputValue, setInputValue] = useState('');
   const [options, setOptions] = useState(deselectedOptions);
 
@@ -64,9 +69,10 @@ export default function AutocompleteExample() {
     />
   );
   const fetch_function=async()=>{
-    await fetch('https://api.github.com/users' ,{headers:{Authorization:`Bearer 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`}})
+    await fetch('https://api.github.com/users' ,{options1})
     .then((res)=>res.json())
     .then((res)=>{
+      console.log(res)
         let t = []
     res.map((d)=>{
         t.push({value:d.login , label:d.login})
@@ -76,14 +82,13 @@ export default function AutocompleteExample() {
   }
 
   const fetch_function2=async()=>{
-    await fetch(`https://api.github.com/users/${selectedOptions}` ,{headers:{Authorization:`Bearer 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`}})
+    await fetch(`https://api.github.com/users/${selectedOptions}` ,{options1})
     .then((res)=>res.json())
     .then((res)=>{
-      if(res.message!=="Not Found"){
-        console.log(res.message)
+    
         setCurrentData([res])
 
-      }
+      
     })
   }
 
@@ -94,6 +99,7 @@ export default function AutocompleteExample() {
   }
   useEffect(()=>{
     fetch_function();
+
      },[])
 
      useEffect(()=>{

@@ -2,11 +2,14 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import {Card, Tabs} from '@shopify/polaris';
 import {useState, useCallback} from 'react';
-import { useNavigate } from 'react-router-dom';
 
 
 const Githubuser = () => {
-    const nav = useNavigate()
+    var options1={
+      method:"POST" ,
+      headers:{Authorization:`Bearer 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`}
+
+    }
     const mystate = useSelector((state)=>state.function1)
     const[repourl , setRepourl]=useState([])
     const [selected, setSelected] = useState(0);
@@ -41,7 +44,7 @@ const Githubuser = () => {
       ];
 
       const fetch_function3=async()=>{
-        await fetch(`https://api.github.com/users/${mystate.save[0].login}/repos` , {headers:{Authorization:`Bearer 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`}})
+        await fetch(`https://api.github.com/users/${mystate.save[0].login}/repos` , {options1})
         .then((res)=>res.json())
         .then((res)=>{
             let t=[];
